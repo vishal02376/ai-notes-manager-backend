@@ -1,7 +1,8 @@
 const Note = require("../models/Note");
 
-// @desc  Get all notes
-// @route GET /api/notes
+
+//Get All Notes
+
 const getNotes = async (req, res, next) => {
   try {
     const notes = await Note.find().sort({ createdDate: -1 });
@@ -11,8 +12,7 @@ const getNotes = async (req, res, next) => {
   }
 };
 
-// @desc  Create a note
-// @route POST /api/notes
+//Create a Note
 const createNote = async (req, res, next) => {
   try {
     const { title, content } = req.body;
@@ -26,8 +26,7 @@ const createNote = async (req, res, next) => {
   }
 };
 
-// @desc  Update a note
-// @route PUT /api/notes/:id
+//Update a Note
 const updateNote = async (req, res, next) => {
   try {
     const { title, content } = req.body;
@@ -51,8 +50,8 @@ const updateNote = async (req, res, next) => {
   }
 };
 
-// @desc  Delete a note
-// @route DELETE /api/notes/:id
+
+//Delete a Note
 const deleteNote = async (req, res, next) => {
   try {
     const note = await Note.findByIdAndDelete(req.params.id);

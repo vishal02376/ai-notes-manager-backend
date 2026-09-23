@@ -4,11 +4,22 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
+  // Agar controller ne pehle se status set kiya hai (jaise 400 ya 404), wahi use karo.
+  // Warna maan lo ye server ki taraf se galti hai, so 500 bhej do.
+  let statusCode = res.statusCode;
+
+  if (!statusCode || statusCode === 200) {
+    statusCode = 500;
+  }
+
+  let message = err.message;
+  if (!message) {
+    message = "Server Error";
+  }
 
   res.status(statusCode).json({
     success: false,
-    message: err.message || "Server Error",
+    message: message,
   });
 };
 
