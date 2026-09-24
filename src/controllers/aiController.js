@@ -14,9 +14,11 @@ const improveNote = async (req, res, next) => {
 
     const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
-    const prompt = `Rewrite the following note to be more professional, clearer, and grammatically correct. Only return the improved text, with no extra commentary or quotation marks.\n\nNote:\n${content}`;
+    const prompt = `Rewrite the following note to be more professional, clearer, and grammatically correct. Only return the improved text, with no extra 
+    commentary or quotation marks.\n\nNote:\n${content}`;
 
     const result = await model.generateContent(prompt);
+    
     const improvedContent = result.response.text().trim();
 
     res.status(200).json({ success: true, data: { improvedContent } });

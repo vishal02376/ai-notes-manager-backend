@@ -4,8 +4,7 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  // Agar controller ne pehle se status set kiya hai (jaise 400 ya 404), wahi use karo.
-  // Warna maan lo ye server ki taraf se galti hai, so 500 bhej do.
+  
   let statusCode = res.statusCode;
 
   if (!statusCode || statusCode === 200) {

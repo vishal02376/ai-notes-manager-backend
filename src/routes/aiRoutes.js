@@ -3,6 +3,7 @@ const { improveNote } = require("../controllers/aiController");
 
 const router = express.Router();
 
-router.route("/improve-note").post(improveNote);
+
+router.post("/improve-note", improveNote);
 
 module.exports = router;
